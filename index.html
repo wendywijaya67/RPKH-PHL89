@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHL - RPKH Ekosistem Hutan Lestari</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #F5F1E8 0%, #FFFAF0 100%);
+            color: #3D2817;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Fade In on Scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #0B4D2C 0%, #1B5E3F 100%);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            color: #D4AF37;
+            font-size: 2.2rem;
+            margin-bottom: 0.3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        header p {
+            font-family: 'Cormorant Garamond', serif;
+            color: #F5F1E8;
+            font-size: 0.95rem;
+            font-weight: 300;
+            letter-spacing: 1.5px;
+            font-style: italic;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(11, 77, 44, 0.95);
+            padding: 1.2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        nav a {
+            color: #D4AF37;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #F5F1E8;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #D4AF37;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        /* Section */
+        section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 100px;
+        }
+
+        section h2 {
+            font-family: 'Playfair Display', serif;
+            color: #0B4D2C;
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            border-bottom: 3px solid #D4AF37;
+            padding-bottom: 1rem;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: #1B5E3F;
+            font-size: 1.6rem;
+            margin: 2rem 0 1rem 0;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        section p {
+            color: #555;
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+            line-height: 1.9;
+        }
+
+        /* Intro Section */
+        .intro-box {
+            background: linear-gradient(135deg, rgba(11, 77, 44, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%);
+            border-left: 5px solid #D4AF37;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .intro-box h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: #0B4D2C;
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        /* 5 Inti Ekosistem */
+        .ecosystem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .ecosystem-card {
+            background: linear-gradient(135deg, #FFFAF0 0%, #F5F1E8 100%);
+            border: 2px solid #D4AF37;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ecosystem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .ecosystem-card:hover::before {
+            left: 100%;
+        }
+
+        .ecosystem-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(11, 77, 44, 0.2);
+            border-color: #1B5E3F;
+        }
+
+        .ecosystem-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #D4AF37;
+        }
+
+        .ecosystem-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: #0B4D2C;
+            margin: 1rem 0;
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .ecosystem-card p {
+            color: #666;
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+
+        /* Hierarchy Section */
+        .hierarchy-container {
+            max-width: 800px;
+            margin: 3rem auto;
+            position: relative;
+        }
+
+        .hierarchy-level {
+            background: linear-gradient(135deg, #0B4D2C 0%, #1B5E3F 100%);
+            color: #F5F1E8;
+            padding: 1.5rem;
+            margin: 1.5rem auto;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 5px solid #D4AF37;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            width: 85%;
+        }
+
+        .hierarchy-level h4 {
+            font-family: 'Cormorant Garamond', serif;
+            color: #D4AF37;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .hierarchy-level p {
+            color: #F5F1E8;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Do & Donts */
+        .do-donts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .do-section, .donts-section {
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .do-section {
+            background: linear-gradient(135deg, rgba(11, 77, 44, 0.15) 0%, rgba(212, 175, 55, 0.1) 100%);
+            border-left: 5px solid #0B4D2C;
+        }
+
+        .donts-section {
+            background: linear-gradient(135deg, rgba(92, 46, 58, 0.15) 0%, rgba(212, 175, 55, 0.1) 100%);
+            border-left: 5px solid #5C2E3A;
+        }
+
+        .do-section h3, .donts-section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .do-section h3 {
+            color: #0B4D2C;
+        }
+
+        .donts-section h3 {
+            color: #5C2E3A;
+        }
+
+        .do-donts-list {
+            list-style: none;
+        }
+
+        .do-donts-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            color: #555;
+        }
+
+        .do-donts-list li:last-child {
+            border-bottom: none;
+        }
+
+        .do-section li::before {
+            content: '✓';
+            color: #0B4D2C;
+            font-weight: bold;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .donts-section li::before {
+            content: '✕';
+            color: #5C2E3A;
+            font-weight: bold;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        /* Roadmap */
+        .roadmap-container {
+            margin: 3rem 0;
+        }
+
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .roadmap-widget {
+            background: linear-gradient(135deg, #FFFAF0 0%, #F5F1E8 100%);
+            border: 2px solid #D4AF37;
+            border-radius: 15px;
+            padding: 1.8rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .roadmap-widget:hover {
+            transform: scale(1.08);
+            box-shadow: 0 15px 40px rgba(11, 77, 44, 0.2);
+            border-color: #1B5E3F;
+        }
+
+        .roadmap-header {
+            font-family: 'Cormorant Garamond', serif;
+            color: #0B4D2C;
+            font-size: 1.4rem;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .roadmap-icon {
+            font-size: 1.8rem;
+            color: #D4AF37;
+        }
+
+        .roadmap-toggle {
+            float: right;
+            color: #D4AF37;
+            font-size: 1.2rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            animation: fadeInModal 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeInModal {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #FFFAF0 0%, #F5F1E8 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            max-width: 650px;
+            width: 90%;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            animation: slideUpModal 0.3s ease;
+            max-height: 85vh;
+            overflow-y: auto;
+            border: 2px solid #D4AF37;
+        }
+
+        @keyframes slideUpModal {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #D4AF37;
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            color: #0B4D2C;
+            font-size: 2rem;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            letter-spacing: 1px;
+        }
+
+        .modal-title-icon {
+            font-size: 2rem;
+            color: #D4AF37;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #0B4D2C;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            color: #D4AF37;
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.9;
+        }
+
+        .modal-body p {
+            margin-bottom: 1.2rem;
+            text-align: justify;
+        }
+
+        .modal-body strong {
+            color: #0B4D2C;
+        }
+
+        /* Info Box */
+        .luxury-box {
+            background: linear-gradient(135deg, #0B4D2C 0%, #1B5E3F 100%);
+            color: #F5F1E8;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border-left: 5px solid #D4AF37;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .luxury-box h4 {
+            font-family: 'Cormorant Garamond', serif;
+            color: #D4AF37;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .luxury-box p {
+            color: #F5F1E8;
+            margin: 0;
+        }
+
+        /* SLVK Framework */
+        .framework-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .framework-card {
+            background: linear-gradient(135deg, #FFFAF0 0%, #F5F1E8 100%);
+            border: 2px solid #D4AF37;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .framework-card h4 {
+            font-family: 'Cormorant Garamond', serif;
+            color: #0B4D2C;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .framework-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #0B4D2C 0%, #1B5E3F 100%);
+            color: #F5F1E8;
+            padding: 3rem 1rem;
+            margin-top: 4rem;
+            text-align: center;
+            border-top: 3px solid #D4AF37;
+        }
+
+        .footer-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            letter-spacing: 3px;
+            font-weight: 300;
+            color: #D4AF37;
+            font-style: italic;
+            text-transform: uppercase;
+        }
+
+        /* Instagram Logo */
+        .instagram-logo {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            z-index: 99;
+            border: 3px solid #D4AF37;
+        }
+
+        .instagram-logo:hover {
+            transform: scale(1.15) translateY(-8px);
+            box-shadow: 0 12px 35px rgba(220, 39, 67, 0.4);
+        }
+
+        .instagram-logo i {
+            color: #ffffff;
+            font-size: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav a {
+                display: block;
+                margin: 0.7rem 0;
+                font-size: 0.9rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .ecosystem-grid, .roadmap-grid, .framework-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .do-donts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hierarchy-level {
+                width: 100%;
+            }
+
+            .instagram-logo {
+                width: 55px;
+                height: 55px;
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+
+            .instagram-logo i {
+                font-size: 1.6rem;
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #F5F1E8;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0B4D2C;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>🌲 PHL - RPKH</h1>
+        <p>Pengelolaan Hutan Lestari & Rencana Pengelolaan Keberlanjutan Hutan</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#phl-rpkh">PHL & RPKH</a>
+        <a href="#ekosistem">5 Inti Ekosistem</a>
+        <a href="#hierarki">Hierarki</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#do-donts">Do & Donts</a>
+        <a href="#inovasi">Inovasi</a>
+        <a href="#framework">Framework</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Section: PHL & RPKH -->
+        <section id="phl-rpkh" class="fade-in">
+            <h2>Pengelolaan Hutan Lestari & RPKH</h2>
+            
+            <div class="intro-box fade-in">
+                <h3>🎯 Definisi & Visi</h3>
+                <p>Pengelolaan Hutan Lestari (PHL) adalah sistem komprehensif yang mengintegrasikan aspek ekologi, sosial, dan ekonomi untuk mencapai keberlanjutan jangka panjang. Rencana Pengelolaan Keberlanjutan Hutan (RPKH) menjadi instrumen utama dalam merealisasikan PHL dengan pendekatan holistik dan terukur.</p>
+            </div>
+
+            <p class="fade-in">RPKH merupakan dokumen strategis yang memandu seluruh kegiatan pengelolaan hutan dengan mempertimbangkan kemampuan lestari ekosistem. Setiap keputusan dan tindakan di lapangan harus berlandaskan data ilmiah yang akurat dan komitmen terhadap keberlanjutan generasi mendatang.</p>
+
+            <div class="luxury-box fade-in">
+                <h4>💎 Prinsip Utama</h4>
+                <p>Harmoni sempurna antara produktivitas hutan, konservasi ekosistem, dan pemberdayaan masyarakat menciptakan model pengelolaan yang menguntungkan semua pihak dalam jangka panjang yang berkelanjutan.</p>
+            </div>
+        </section>
+
+        <!-- Section: 5 Inti Ekosistem -->
+        <section id="ekosistem" class="fade-in">
+            <h2>5 Inti Ekosistem Pengelolaan Hutan Lestari</h2>
+            
+            <div class="ecosystem-grid">
+                <div class="ecosystem-card fade-in">
+                    <div class="ecosystem-icon">🌿</div>
+                    <h3>Keanekaragaman Hayati</h3>
+                    <p>Pelestarian keanekaragaman spesies flora dan fauna sebagai fondasi ekosistem yang sehat dan resilient terhadap perubahan lingkungan global.</p>
+                </div>
+
+                <div class="ecosystem-card fade-in">
+                    <div class="ecosystem-icon">💧</div>
+                    <h3>Siklus Hidrologi</h3>
+                    <p>Pemeliharaan fungsi hidrologi hutan untuk menjaga ketersediaan air bersih, regulasi iklim, dan pencegahan bencana alam seperti banjir dan kekeringan.</p>
+                </div>
+
+                <div class="ecosystem-card fade-in">
+                    <div class="ecosystem-icon">⚡</div>
+                    <h3>Siklus Nutrisi</h3>
+                    <p>Menjaga keseimbangan siklus nutrisi untuk memastikan kesuburan tanah dan pertumbuhan optimal flora dalam ekosistem yang dinamis.</p>
+                </div>
+
+                <div class="ecosystem-card fade-in">
+                    <div class="ecosystem-icon">🌍</div>
+                    <h3>Stabilitas Iklim</h3>
+                    <p>Peran hutan dalam sequestration karbon dan regulasi iklim lokal-global melalui transpirasi dan penyerapan emisi gas rumah kaca.</p>
+                </div>
+
+                <div class="ecosystem-card fade-in">
+                    <div class="ecosystem-icon">🤝</div>
+                    <h3>Harmoni Sosial</h3>
+                    <p>Keterlibatan masyarakat lokal, transparansi tata kelola, dan distribusi manfaat ekonomi yang adil untuk kesejahteraan generasi sekarang dan mendatang.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Hierarki Mutlak -->
+        <section id="hierarki" class="fade-in">
+            <h2>Hierarki Mutlak 5 Inti Ekosistem</h2>
+            
+            <div class="hierarchy-container fade-in">
+                <div class="hierarchy-level fade-in" style="width: 100%;">
+                    <h4>🔝 Level 1: Fondasi Biologis</h4>
+                    <p>Keanekaragaman Hayati — Dasar non-negotiable untuk semua fungsi ekosistem lainnya</p>
+                </div>
+
+                <div class="hierarchy-level fade-in" style="width: 95%;">
+                    <h4>⬆️ Level 2: Fungsi Hidrologi</h4>
+                    <p>Siklus air & nutrisi sebagai pendukung kehidupan semua organisme dalam ekosistem</p>
+                </div>
+
+                <div class="hierarchy-level fade-in" style="width: 90%;">
+                    <h4>⬆️ Level 3: Regulasi Biogeokimia</h4>
+                    <p>Stabilitas iklim global melalui carbon sequestration dan regulasi suhu lokal</p>
+                </div>
+
+                <div class="hierarchy-level fade-in" style="width: 85%;">
+                    <h4>⬆️ Level 4: Integrasi Sosial-Ekologi</h4>
+                    <p>Harmoni sosial memastikan keberlanjutan seluruh sistem melalui tata kelola yang transparan</p>
+                </div>
+
+                <div class="hierarchy-level fade-in" style="width: 80%;">
+                    <h4>🎯 Level 5: Tujuan Akhir</h4>
+                    <p>Keberlanjutan Hutan — Pencapaian sinergi sempurna antara semua 4 inti untuk masa depan</p>
+                </div>
+            </div>
+
+            <div class="luxury-box fade-in">
+                <h4>⚖️ Prinsip Harmonisasi Ekologi & Transparansi</h4>
+                <p>Tidak ada kompromi pada fungsi ekologis fundamental. Setiap keputusan manajemen harus didukung data ilmiah ketat dan dikomunikasikan transparan kepada semua stakeholder. Transparansi bukan hanya prinsip etika—ini adalah mekanisme survival ekosistem.</p>
+            </div>
+        </section>
+
+        <!-- Section: Do & Donts -->
+        <section id="do-donts" class="fade-in">
+            <h2>Standar Ilmiah & Protokol Lapangan</h2>
+            
+            <p class="fade-in">Setiap tindakan di lapangan diatur oleh standar ilmiah yang ketat untuk menjaga integritas ekosistem. Implementasi PHL memerlukan disiplin tinggi, dokumentasi komprehensif, dan komitmen pada prinsip-prinsip yang telah terbukti secara ilmiah.</p>
+
+            <div class="do-donts-grid">
+                <div class="do-section fade-in">
+                    <h3>✓ YA HARUS DILAKUKAN</h3>
+                    <ul class="do-donts-list">
+                        <li>Monitoring biodiversity dengan metode ilmiah terstandar setiap kuartal</li>
+                        <li>Dokumentasi lengkap setiap aktivitas dalam sistem digital terintegrasi</li>
+                        <li>Konsultasi dengan ahli ekologi sebelum intervensi besar di hutan</li>
+                        <li>Rotasi pemanenan berdasarkan studi daya pulih ekosistem</li>
+                        <li>Pelatihan berkelanjutan SDM tentang protokol pengelolaan modern</li>
+                        <li>Transparansi data real-time kepada stakeholder dan regulator</li>
+                        <li>Restorasi habitat untuk spesies yang terancam punah</li>
+                        <li>Pemberdayaan masyarakat lokal dalam pengambilan keputusan</li>
+                    </ul>
+                </div>
+
+                <div class="donts-section fade-in">
+                    <h3>✕ JANGAN PERNAH DILAKUKAN</h3>
+                    <ul class="do-donts-list">
+                        <li>Penebangan tanpa izin tertulis dan analisis dampak ekosistem</li>
+                        <li>Pembersihan tegakan tanpa perhitungan kadar keanekaragaman minimum</li>
+                        <li>Penggunaan pestisida sintetis yang merusak mikroorganisme tanah</li>
+                        <li>Konstruksi infrastruktur tanpa studi lingkungan komprehensif</li>
+                        <li>Manipulasi data monitoring untuk menutup kegagalan manajemen</li>
+                        <li>Eksklusi masyarakat lokal dari proses perencanaan dan keputusan</li>
+                        <li>Pengabaian tanda-tanda degradasi atau stress ekosistem</li>
+                        <li>Kompromi pada biodiversity untuk keuntungan ekonomi jangka pendek</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Transformasi Fisik ke Karbon -->
+        <section id="inovasi" class="fade-in">
+            <h2>Dari Pohon Fisik ke Kredit Karbon Terverifikasi</h2>
+            
+            <div class="intro-box fade-in">
+                <h3>📊 Dokumentasi Lengkap Setiap Langkah</h3>
+                <p>Paradigma baru dalam pengelolaan hutan mengintegrasikan setiap aspek fisik—dari pohon individual hingga ekosistem keseluruhan—dengan sistem verifikasi digital yang ketat. Setiap langkah harus terdokumentasi dengan data georeferensial, foto timestamp, dan validasi independen.</p>
+            </div>
+
+            <h3 class="fade-in">🔄 Proses Transformasi Nilai</h3>
+            
+            <div class="framework-grid">
+                <div class="framework-card fade-in">
+                    <h4>1️⃣ Inventarisasi Pohon</h4>
+                    <p>Setiap pohon didaftarkan dengan spesies, diameter, tinggi, dan lokasi GPS presisi. Data dikumpulkan dengan teknologi LIDAR dan ground survey simultan.</p>
+                </div>
+
+                <div class="framework-card fade-in">
+                    <h4>2️⃣ Kalkulasi Carbon Stock</h4>
+                    <p>Biomassa pohon dihitung menggunakan alometric equations yang tervalidasi untuk setiap spesies, menghasilkan estimate karbon tersimpan dalam ton per hektar.</p>
+                </div>
+
+                <div class="framework-card fade-in">
+                    <h4>3️⃣ Baseline & Skenario</h4>
+                    <p>Kondisi awal (baseline) dibandingkan dengan skenario bisnis biasa (business-as-usual) untuk menentukan tambahan karbon yang disimpan oleh proyek PHL.</p>
+                </div>
+
+                <div class="framework-card fade-in">
+                    <h4>4️⃣ Verifikasi Independen</h4>
+                    <p>Auditor pihak ketiga memvalidasi metodologi, data, dan perhitungan sesuai standar internasional VCS atau Gold Standard.</p>
+                </div>
+
+                <div class="framework-card fade-in">
+                    <h4>5️⃣ Sertifikasi Kredit Karbon</h4>
+                    <p>Kredit karbon dikeluarkan (1 kredit = 1 ton CO2e) dan dapat diperdagangkan di pasar karbon sukarela maupun compliance.</p>
+                </div>
+
+                <div class="framework-card fade-in">
+                    <h4>6️⃣ Monitoring Berkelanjutan</h4>
+                    <p>Re-inventarisasi setiap 5 tahun memastikan karbon tetap tersimpan dan potensi leakage diidentifikasi dan dimitigasi.</p>
+                </div>
+            </div>
+
+            <div class="luxury-box fade-in">
+                <h4>🔐 Transparansi Blockchain</h4>
+                <p>Setiap transaksi kredit karbon dicatat dalam sistem blockchain terdesentralisasi, memastikan imutabilitas data dan transparansi penuh bagi semua pihak yang berkepentingan. Integritas data adalah inti dari kepercayaan pasar karbon.</p>
+            </div>
+        </section>
+
+        <!-- Section: Paradigma Baru -->
+        <section id="paradigma" class="fade-in">
+            <h2>Paradigma Baru: Eksploitasi Paralel Berkelanjutan</h2>
+            
+            <div class="intro-box fade-in">
+                <h3>💡 Konsep Revolusioner</h3>
+                <p>Paradigma baru memungkinkan eksploitasi berbagai potensi ekosistem secara paralel—kayu, karbon, ekowisata, produk non-kayu, dan layanan ekosistem—selama seluruhnya tercatat dalam RPKH dan diawasi oleh sistem digital terdesentralisasi yang real-time.</p>
+            </div>
+
+            <h3 class="fade-in">🌈 Aliran Pendapatan Terintegrasi</h3>
+            
+            <div class="framework-grid">
+                <div class="framework-card fade-in">
+                    <h4>🌳 Produk Kayu</h4>
+                    <p>Tebang pilih dan rotasi pemanenan dioptimalkan sesuai kurva pertumbuhan logistik spesies untuk maksimalkan yield sambil menjaga struktur hutan.</p>
+                </div>
+
+                <div class="framework-card fade-in">
+                    <h4>♻️ Kredit Karbon</h4>
+                    <p>Penyerapan dan penyimpanan karbon dimonetisasi melalui pasar karbon, dengan 100% transparansi dalam perhitungan dan verifikasi.</p>
+                </div>
+
+                <div class="framework-card fade-in">
+                    <h4>🏞️ Ekowisata</h4>
+                    <p>Zona wisata ekologis dirancang untuk meminimalkan dampak sambil menghasilkan revenue untuk konservasi dan pemberdayaan masyarakat lokal.</p>
+                </div>
+
+                <div class="framework-card fade-in">
+                    <h4>🍯 Produk Non-Kayu</h4>
+                    <p>Honey, rotan, karet, dan produk lokal lainnya dikelola dalam agroforestri multi-layer yang meningkatkan income tanpa mengorbankan biodiversity.</p>
+                </div>
+
+                <div class="framework-card fade-in">
+                    <h4>💧 Layanan Ekosistem</h4>
+                    <p>Air bersih, regulasi iklim, dan penyaringan polutan diukur dan diperdagangkan dalam payment for ecosystem services (PES) schemes.</p>
+                </div>
+
+                <div class="framework-card fade-in">
+                    <h4>📚 Penelitian & Edukasi</h4>
+                    <p>Hutan menjadi laboratorium alami untuk universitas dan lembaga riset, menghasilkan knowledge dan income berkelanjutan.</p>
+                </div>
+            </div>
+
+            <div class="luxury-box fade-in">
+                <h4>🎯 Sinergi Sempurna</h4>
+                <p>Tidak ada trade-off sejati. Setiap aliran pendapatan dirancang untuk memperkuat yang lain—meningkatkan biodiversity → lebih banyak ekowisata & produk non-kayu → lebih banyak habitat untuk karbon sequestration → lebih kaya ekosistem → lebih kuat untuk tebang pilih. Ini adalah ekonomi sirkular sejati.</p>
+            </div>
+        </section>
+
+        <!-- Section: Roadmap Tata Kelola -->
+        <section id="roadmap" class="fade-in">
+            <h2>Roadmap Tata Kelola RPKH</h2>
+            
+            <p class="fade-in">Implementasi PHL melalui RPKH mengikuti roadmap strategis yang jelas dengan milestone terukur. Klik setiap fase untuk melihat detail komprehensif tentang aktivitas, target, dan indikator keberhasilan.</p>
+
+            <div class="roadmap-grid">
+                <div class="roadmap-widget fade-in" onclick="openModal('modal-fase1')">
+                    <div class="roadmap-header">
+                        <span class="roadmap-icon">📋</span>
+                        Fase 1: Perencanaan
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">Tahun 1-2: Inventarisasi & Baseline</p>
+                    <div class="roadmap-toggle">→</div>
+                </div>
+
+                <div class="roadmap-widget fade-in" onclick="openModal('modal-fase2')">
+                    <div class="roadmap-header">
+                        <span class="roadmap-icon">🌱</span>
+                        Fase 2: Implementasi
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">Tahun 3-5: Restorasi & Manajemen</p>
+                    <div class="roadmap-toggle">→</div>
+                </div>
+
+                <div class="roadmap-widget fade-in" onclick="openModal('modal-fase3')">
+                    <div class="roadmap-header">
+                        <span class="roadmap-icon">🔍</span>
+                        Fase 3: Monitoring
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">Tahun 6-10: Verifikasi & Adaptasi</p>
+                    <div class="roadmap-toggle">→</div>
+                </div>
+
+                <div class="roadmap-widget fade-in" onclick="openModal('modal-fase4')">
+                    <div class="roadmap-header">
+                        <span class="roadmap-icon">💰</span>
+                        Fase 4: Monetisasi
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">Tahun 11+: Kredit Karbon & Revenue</p>
+                    <div class="roadmap-toggle">→</div>
+                </div>
+
+                <div class="roadmap-widget fade-in" onclick="openModal('modal-fase5')">
+                    <div class="roadmap-header">
+                        <span class="roadmap-icon">🔄</span>
+                        Fase 5: Keberlanjutan
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">Tahun 21+: Perpetual Management</p>
+                    <div class="roadmap-toggle">→</div>
+                </div>
+
+                <div class="roadmap-widget fade-in" onclick="openModal('modal-fase6')">
+                    <div class="roadmap-header">
+                        <span class="roadmap-icon">🌍</span>
+                        Fase 6: Legasi
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 0.5rem;">Pengaruh Global & Transformasi</p>
+                    <div class="roadmap-toggle">→</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal Fase 1 -->
+        <div class="modal" id="modal-fase1">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <span class="modal-title-icon">📋</span>
+                        Fase 1: Perencanaan Strategis
+                    </div>
+                    <button class="modal-close" onclick="closeModal('modal-fase1')">✕</button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Durasi: Tahun 1-2</strong></p>
+                    <p>Fase perencanaan adalah fondasi seluruh proyek PHL. Aktivitas utama meliputi:</p>
+                    <p><strong>Inventarisasi Komprehensif:</strong> Survei lapangan mendalam dengan teknologi LIDAR, GPS, dan ground sampling untuk mengidentifikasi spesies pohon, struktur usia, kondisi kesehatan, dan estimasi biomassa/karbon stock awal.</p>
+                    <p><strong>Analisis Ekologi:</strong> Studi mendalam tentang keanekaragaman hayati, pola hidrologi, kualitas tanah, dan potensi restorasi untuk menjadi baseline ilmiah semua keputusan manajemen berikutnya.</p>
+                    <p><strong>Pemetaan Sosial:</strong> Identifikasi stakeholder, hak lahan komunitas, tradisi pengelolaan lokal, dan kesepakatan benefit-sharing yang adil dan transparan.</p>
+                    <p><strong>Penyusunan RPKH:</strong> Dokumen komprehensif yang mengintegrasikan data ilmiah, regulasi, dan visi jangka panjang untuk 25-50 tahun ke depan dengan flexibility untuk adaptasi.</p>
+                    <p><strong>Target Kuantitatif:</strong> Baseline karbon tersimpan, spesies teridentifikasi, luas tutupan, dan target KPI untuk seluruh periode implementasi.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Fase 2 -->
+        <div class="modal" id="modal-fase2">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <span class="modal-title-icon">🌱</span>
+                        Fase 2: Implementasi & Restorasi
+                    </div>
+                    <button class="modal-close" onclick="closeModal('modal-fase2')">✕</button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Durasi: Tahun 3-5</strong></p>
+                    <p>Fase eksekusi dimana rencana diubah menjadi aksi nyata di lapangan dengan disiplin tinggi.</p>
+                    <p><strong>Restorasi Habitat:</strong> Penanaman spesies native di area degradasi, penebasan invasive species, dan pemulihan waterways untuk mengembalikan fungsi ekologi sistem.</p>
+                    <p><strong>Manajemen Aktif Tegakan:</strong> Thinning bertahap untuk meningkatkan akses cahaya, penyiangan kompetitif, dan pemupukan berdasarkan hasil soil test untuk optimalkan pertumbuhan.</p>
+                    <p><strong>Infrastruktur Digital:</strong> Implementasi sistem monitoring berbasis cloud dengan sensor IoT, drone surveillance, dan database terpusat untuk tracking real-time semua aktivitas dan perubahan ekosistem.</p>
+                    <p><strong>Pemberdayaan Komunitas:</strong> Training SDM lokal tentang protokol pengelolaan modern, safety standards, dan career pathways dalam ekonomi hutan berkelanjutan.</p>
+                    <p><strong>Target Fisik:</strong> X hektar habitat terestorasi, Y pohon baru ditanam, Z species yang dipulihkan ke status healthy population.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Fase 3 -->
+        <div class="modal" id="modal-fase3">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <span class="modal-title-icon">🔍</span>
+                        Fase 3: Monitoring & Adaptasi
+                    </div>
+                    <button class="modal-close" onclick="closeModal('modal-fase3')">✕</button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Durasi: Tahun 6-10</strong></p>
+                    <p>Monitoring berkelanjutan memvalidasi efektivitas strategi dan mengidentifikasi kebutuhan adaptasi dalam real-time.</p>
+                    <p><strong>Survei Berkala:</strong> Re-inventarisasi setiap 2 tahun menggunakan metodologi identik dengan baseline untuk mengukur perubahan karbon, biodiversity, dan health indicators dengan akurasi tinggi.</p>
+                    <p><strong>Analisis Dampak:</strong> Evaluasi kuantitatif tentang efektivitas restorasi, perubahan komunitas spesies, recovery kurva untuk spesies target, dan validasi proyeksi awal.</p>
+                    <p><strong>Adaptasi Manajemen:</strong> Jika monitoring menunjukkan deviation dari target, protokol manajemen disesuaikan berdasarkan data—ini adalah management by science, bukan ideology.</p>
+                    <p><strong>Verifikasi Independen:</strong> Audit oleh pihak ketiga menggunakan standar internasional (ISO, VCS) untuk memvalidasi perhitungan karbon dan biodiversity claims sebelum monetisasi.</p>
+                    <p><strong>Transparansi Data:</strong> Semua hasil monitoring dipublikasikan real-time di platform publik untuk akuntabilitas dan kepercayaan stakeholder.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Fase 4 -->
+        <div class="modal" id="modal-fase4">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <span class="modal-title-icon">💰</span>
+                        Fase 4: Monetisasi & Scaling
+                    </div>
+                    <button class="modal-close" onclick="closeModal('modal-fase4')">✕</button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Durasi: Tahun 11+</strong></p>
+                    <p>Setelah credibility dibangun melalui monitoring berkala, proyek mulai menghasilkan revenue dari berbagai aliran yang terukur dan terverifikasi.</p>
+                    <p><strong>Penerbitan Kredit Karbon:</strong> Berdasarkan verified karbon adicional yang disimpan, kredit dikeluarkan sesuai standar VCS/Gold Standard dan diperdagangkan di pasar karbon global dengan harga premium untuk proyek high-integrity.</p>
+                    <p><strong>Revenue dari Kayu:</strong> Tebang pilih selective diterapkan dengan ketat—hanya pohon dalam kategori diameter/usia yang ditentukan, volume terbatas per tahun, dan dengan immediate reforestation. Ini bukan clearcut—ini adalah sustainable harvesting.</p>
+                    <p><strong>Ekowisata & Edukasi:</strong> Infrastruktur wisata dirancang dengan carrying capacity rendah untuk meminimalkan dampak sambil menghasilkan employment dan awareness tentang nilai hutan.</p>
+                    <p><strong>Payment for Ecosystem Services:</strong> Kompensasi dari downstream users (municipal water suppliers, power companies) untuk perlindungan watershed dan regulasi hidrologi.</p>
+                    <p><strong>Benefit Sharing Transparan:</strong> Revenue dibagi sesuai formula yang telah disepakati—proporsi untuk konservasi, komunitas lokal, dan operational costs.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Fase 5 -->
+        <div class="modal" id="modal-fase5">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <span class="modal-title-icon">🔄</span>
+                        Fase 5: Keberlanjutan Perpetual
+                    </div>
+                    <button class="modal-close" onclick="closeModal('modal-fase5')">✕</button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Durasi: Tahun 21+</strong></p>
+                    <p>Pada fase ini, proyek PHL telah matang dan menghasilkan carbon stock stabil yang terus memberikan benefit berkelanjutan selamanya.</p>
+                    <p><strong>Steady-State Management:</strong> Ekosistem telah mencapai kondisi yang relative stabil dengan pertumbuhan karbon yang konsisten dan biodiversity yang resilient. Manajemen fokus pada maintenance bukan transformation.</p>
+                    <p><strong>Perpetual Funding:</strong> Sistem funding jangka panjang dibangun melalui trust fund atau conservation easement sehingga proyek tidak bergantung pada annual budget atau whims of administrators yang berganti.</p>
+                    <p><strong>Generasi Kedua Leadership:</strong> Transisi kepemimpinan ke generasi berikutnya dengan full transfer knowledge dan stewardship mindset untuk continuity hingga century berikutnya.</p>
+                    <p><strong>Adaptive Management:</strong> Walaupun mature, protokol monitoring tetap dilakukan setiap 5 tahun untuk deteksi early warning tentang emerging threats (penyakit, invasive species, climate stress) dengan response capacity siap.</p>
+                    <p><strong>Legacy Building:</strong> Dokumentasi lengkap tentang lessons learned, best practices, dan data historis menjadi public good untuk inspirasi proyek serupa di region lain.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Fase 6 -->
+        <div class="modal" id="modal-fase6">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <span class="modal-title-icon">🌍</span>
+                        Fase 6: Legasi & Transformasi Global
+                    </div>
+                    <button class="modal-close" onclick="closeModal('modal-fase6')">✕</button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Durasi: Beyond Decade 2</strong></p>
+                    <p>Dampak jangka panjang proyek PHL melampaui hutan individual menjadi transformasi paradigma pengelolaan hutan skala landscape dan biosfer.</p>
+                    <p><strong>Pengaruh Ilmiah:</strong> Data 30+ tahun menjadi case study canonical dalam forest ecology, carbon finance, dan sustainable development—dikutip dalam publikasi, policies, dan practice guidelines global.</p>
+                    <p><strong>Replication & Scaling:</strong> Model terbukti sukses direplikasi di region lain dengan adaptasi lokal, menciptakan network hutan lestari yang terintegrasi dalam landscape carbon accounting global.</p>
+                    <p><strong>Integrasi Pasar Karbon:</strong> Hutan menjadi instrumen investasi mainstream dalam portfolio climate finance, institutional investors, dan green bonds market.</p>
+                    <p><strong>Pengaruh Sosial:</strong> Generasi yang tumbuh dengan proyek ini mengadopsi nilai-nilai konservasi dan sustainable stewardship dalam kehidupan mereka, menciptakan cultural shift dalam masyarakat terhadap hutan.</p>
+                    <p><strong>Kontribusi Iklim Global:</strong> Cumulatif carbon sequestration senilai jutaan ton CO2 dihitung dalam national emissions targets dan international climate agreements, berkontribusi pada goal Paris Agreement.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: SLVK & RPKH Framework -->
+        <section id="framework" class="fade-in">
+            <h2>Integrasi SLVK & RPKH dalam Sistem Tata Kelola</h2>
+            
+            <p class="fade-in">Sistem Legalitas dan Verifikasi Kayu (SLVK) dan Rencana Pengelolaan Keberlanjutan Hutan (RPKH) bersama-sama menciptakan framework tata kelola yang komprehensif dan kredibel di mata pasar global dan regulator internasional.</p>
+
+            <div class="framework-grid">
+                <div class="framework-card fade-in">
+                    <h4>🏛️ SLVK: Fondasi Legalitas</h4>
+                    <p>Sistem yang mengverifikasi bahwa setiap kayu diproduksi dengan compliance penuh terhadap hukum nasional dan internasional. Setiap log ditandai, traced, dan documented dari pohon hingga mill untuk eliminate illegal logging dan laundering.</p>
+                </div>
+
+                <div class="framework-card fade-in">
+                    <h4>📋 RPKH: Fondasi Keberlanjutan</h4>
+                    <p>Rencana multi-decade yang memandu sustainable forest management dengan balance antara produksi, konservasi, dan social benefit. RPKH adalah 'constitutional document' yang mengikat semua stakeholder dalam visi bersama.</p>
+                </div>
+
+                <div class="framework-card fade-in">
+                    <h4>🔗 Sinergi Operasional</h4>
+                    <p>SLVK memastikan compliance pada RPKH—hanya pohon yang ditanda dalam RPKH untuk harvest yang dapat di-process. Sebaliknya, RPKH harus evidence-based seperti yang diminta SLVK. Keduanya saling memperkuat credibility.</p>
+                </div>
+
+                <div class="framework-card fade-in">
+                    <h4>🌐 Sertifikasi Internasional</h4>
+                    <p>Kombinasi SLVK + RPKH memenuhi kriteria FSC (Forest Stewardship Council), PEFC, dan tropical timber certifications—membuka akses pasar premium untuk produk kayu sertifikat dan kredit karbon verified.</p>
+                </div>
+
+                <div class="framework-card fade-in">
+                    <h4>📊 Digital Integration</h4>
+                    <p>Semua data SLVK dan RPKH diintegrasikan dalam platform digital terdesentralisasi (blockchain-based) yang memungkinkan real-time tracking dari forest management hingga consumer point-of-sale.</p>
+                </div>
+
+                <div class="framework-card fade-in">
+                    <h4>👥 Stakeholder Accountability</h4>
+                    <p>SLVK + RPKH menciptakan transparent governance dimana masyarakat, NGOs, dan regulators dapat monitor compliance dan advocate untuk perbaikan dengan mengakses verified data publik.</p>
+                </div>
+            </div>
+
+            <div class="luxury-box fade-in">
+                <h4>✨ Ekosistem Terpadu</h4>
+                <p>SLVK mencegah illegal—RPKH mencegah unsustainable. Bersama mereka menciptakan 'proof of forest'—sertifikat keaslian bahwa hutan dikelola dengan integritas tinggi. Ini adalah nilai tambah yang buyers di pasar premium bersedia bayar premium price.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p class="footer-text">DIBUAT OLEH GREGORIUS WENDY WIJAYA</p>
+    </footer>
+
+    <!-- Instagram Logo -->
+    <a href="https://www.instagram.com/dywendy__/" target="_blank" class="instagram-logo" title="Follow Instagram">
+        <i class="fab fa-instagram"></i>
+    </a>
+
+    <script>
+        // Fade in on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Modal functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal on outside click
+        document.addEventListener('click', function(event) {
+            const modals = document.querySelectorAll('.modal.active');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Close modal on Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
+
+        // Smooth scroll navigation
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
